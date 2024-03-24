@@ -1,0 +1,28 @@
+.email-index-container {
+    height: 100%;
+    display: grid;
+    grid-template-areas:
+        'header               search'
+        'aside                body';
+
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 256px 1fr;
+    ;
+}
+
+.mail-list-container {
+    background-color: white;
+}
+
+.float {
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    bottom: 17px;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    font-weight: 800;
+}

@@ -10,23 +10,56 @@ export const emailService = {
 	getDefaultFilter,
 	getLoggedInUser,
 	generateEmails,
+	getEmailsCounts,
 }
 
 const loggedInUser = {
 	email: 'dor.eden@gmail.com',
 	fullName: 'Dor Eden',
-}
+};
 
 const STORAGE_KEY = 'emails';
 
 //Functions:
 //CRUD functions:
-async function query(filter) {
+async function query(filterBy, folderId) {
 	let emails = await storageService.query(STORAGE_KEY);
-	if (filter) {
-		emails = emails.filter((email) => doesEmailMatchFilter(email, filter));
-		if (filter.folder != 'drafts') {
-			emails = emails.sort((e1, e2) => (e1.sentAt < e2.sentAt ? 1 : -1));
+	if (filterBy) {
+		let { to, body } = filterBy;
+		to = loggedInUser.email;
+		emails = emails.filter(
+			(email) =>
+				email.body.toLowerCase().includes(body.toLowerCase()) && email.to === to
+		);
+
+		switch (folderId) {
+			case 'inbox':
+				emails = emails.filter(
+					(email) =>
+						email.to == loggedInUser.email &&
+						email.removedAt === null &&
+						email.sentAt !== null
+				);
+				break;
+			case 'starred':
+				emails = emails.filter((email) => email.isStarred === true);
+				break;
+			case 'sent':
+				emails = emails.filter(
+					(email) =>
+						email.from === loggedInUser.email &&
+						email.removedAt === null &&
+						email.sentAt != null
+				);
+				break;
+			case 'drafts':
+				emails = emails.filter(
+					(email) => email.sentAt === null && email.removedAt === null
+				);
+				break;
+			case 'trash':
+				emails = emails.filter((email) => email.removedAt !== null);
+				break;
 		}
 	}
 	return emails;
@@ -34,9 +67,9 @@ async function query(filter) {
 
 async function getById(id) {
 	const email = await storageService.get(STORAGE_KEY, id);
-	email.isRead = true
-	save(email)
-	return email
+	email.isRead = true;
+	save(email);
+	return email;
 }
 //  Create an Email using the email model
 function createEmail() {
@@ -65,14 +98,69 @@ function save(emailToSave) {
 	}
 }
 
-// Filter Related Functions:
+// Filter,Sort,Count Related Functions:
 function getDefaultFilter() {
 	return {
-		isRead: null,
-		isStarred: null,
-		searchString: '',
-		folder: null,
+		to: loggedInUser,
+		body: '',
 	};
+}
+
+function getDefaultSort() {
+	return {
+		by: 'date',
+		dir: 1,
+	};
+}
+
+// emails count in folders:
+async function getEmailsCounts() {
+	let emails = await storageService.query(STORAGE_KEY);
+	const countMap = emails.reduce(
+		(acc, email) => {
+			// count inbox:
+			if (
+				!email.isRead &&
+				email.to == loggedInUser.email &&
+				email.removeAt === null &&
+				email.sentAt !== null
+			) {
+				acc.inbox++;
+			}
+
+			// count starred folder:
+			if (email.isStarred) {
+				acc.Starred++;
+			}
+			// count sent folder:
+			if (
+				email.from === loggedInUser.email &&
+				email.removedAt === null &&
+				email.sentAt != null
+			) {
+				acc.Sent++;
+			}
+
+			// count drafts folder:
+			if (email.sentAt === null && email.removedAt === null) {
+				acc.Drafts++;
+			}
+			// count trash folder:
+			if (email.removeAt !== null) {
+				acc.Trash++;
+			}
+
+			return acc;
+		},
+		{
+			Inbox: 0,
+			Starred: 0,
+			Sent: 0,
+			Drafts: 0,
+			Trash: 0,
+		}
+	);
+	return countMap;
 }
 
 // utils functions:

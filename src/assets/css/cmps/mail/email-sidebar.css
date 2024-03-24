@@ -1,0 +1,94 @@
+.side-bar-container {
+    grid-area: aside;
+    align-self: self-start;
+    display: grid;
+    align-content: start;
+    grid-template-columns: 200px;
+    grid-column: 1 /2;
+    grid-row: 2 /4;
+    height: 100%;
+    background-color: rgb(246, 248, 252);
+}
+
+.compose-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 16px;
+    font-weight: 500;
+    color: #5f6368;
+    height: 56px;
+    padding: 0 20px 0 0;
+    margin: 0 0 16px 8px;
+    width: 142px;
+    border: none;
+    box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.302), 0 1px 3px 1px rgba(60, 64, 67, 0.149);
+    background-color: #b5e0e6b4;
+
+}
+
+.compose-text{
+    font-weight: 500;
+    margin-left: 12px;
+}
+
+.compose-img {
+    width: 20px;
+    height: 20px;
+    margin-left: 18px;
+}
+
+.side-panel-btn {
+    border: 0.5px solid rgb(127, 125, 125);
+    background-color: transparent;
+    width: 202px;
+    height: 32px;
+    padding-left: 20px;
+    border: none;
+    cursor: auto;
+
+    /* Child */
+    display: grid;
+    justify-items: start;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 10px;
+}
+
+.side-panel-btn:hover {
+    background-color: rgba(32, 33, 36, 0.06);
+    border-bottom-right-radius: 16px;
+    border-top-right-radius: 16px
+}
+
+
+.side-panel-text {
+    padding-inline-start: 8px;
+}
+
+.emails-count {
+    margin-left: 10px;
+    font-size: medium;
+    font-weight: 400;
+    padding-inline-end: 7px;
+
+}
+
+
+
+
+
+
+.side-panel-btn.active {
+    background-color: #d3e2fd;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    font-weight: bolder;
+}
+
+.side-panel-btn.active>.side-panel-text {
+    /* background-color: #d3e2fd;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px; */
+    font-weight: bolder;
+}

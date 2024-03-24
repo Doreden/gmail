@@ -1,0 +1,13 @@
+.menu-icon {
+    padding: 8px;
+    margin: 2px;
+    cursor: pointer;
+}
+
+.user-image {
+    border-radius: 50%;
+}
+
+.remove-padding {
+    padding: 0;
+}

@@ -1,0 +1,128 @@
+ /* Table styling */
+ ul {
+     list-style-type: none;
+     margin: 0;
+     padding: 0;
+ }
+
+
+ /* Main Container Style */
+ .main-email-container {
+     padding-left: 10px;
+     display: grid;
+     grid-template-columns: auto auto 200px auto 1fr auto;
+     column-gap: 10px;
+     height: 50px;
+     border-bottom: 1px solid #e2e7ef;
+     align-items: center;
+ }
+
+ .main-email-container.unread {
+     background-color: #fff;
+     font-weight: bolder;
+ }
+
+ .main-email-container:hover {
+     /* height: 38px; */
+     border: 0.5px solid transparent;
+     border-bottom: 1px solid transparent;
+ }
+
+
+
+ .mail-preview-link {
+     grid-area: 1/3/ span 1 / span 3;
+     z-index: 3;
+     width: 100%;
+     height: 100%;
+ }
+
+
+
+ #select {
+     margin-left: 20px;
+     margin-right: 10px;
+ }
+
+
+ .mail-preview-star {
+     grid-area: 1/2/ span 1/ span 1;
+     margin-left: 10px;
+     margin-right: 10px;
+     cursor: pointer;
+ }
+
+ .star-img {
+     filter: invert();
+ }
+
+ .mail-preview-checkbox {
+     grid-area: 1/1 /span 1 / span 1;
+     height: 15px;
+     width: 15px;
+     background-color: #053454;
+     cursor: pointer;
+ }
+
+ .mail-preview-from {
+     grid-area: 1/3 /span 1 / span 1;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+ }
+
+ .mail-preview-subject {
+     grid-area: 1/4 /span 1 / span 1;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+ }
+
+ .mail-preview-body {
+     grid-area: 1/5 /span 1 / span 1;
+     overflow: hidden;
+     white-space: nowrap;
+     text-overflow: ellipsis;
+ }
+
+ .mail-preview-actions-btns {
+     grid-area: 1/6 /span 1 / span 1;
+     margin-inline-end: 20px;
+     cursor: pointer;
+ }
+
+
+ /* LOGO */
+ .menu-container {
+
+     width: 20px;
+     margin-left: 30px;
+     align-self: center;
+ }
+
+ .menu-logo-main--container {
+     grid-area: header;
+     padding-top: 5px;
+     display: flex;
+     gap: 20px;
+ }
+
+
+ .head-btns {
+     padding-top: 10px;
+     padding-bottom: 30px;
+     background-color: #fff;
+     padding-left: 10px;
+     height: 30px;
+     border-top-right-radius: 20px;
+     border-top-left-radius: 20px;
+     cursor: pointer;
+ }
+
+
+ .head-btns-checkbox {
+     height: 15px;
+     width: 15px;
+     background-color: #053454;
+     cursor: pointer;
+ }

@@ -6,9 +6,19 @@
 
 /* Pages */
 @import "./pages/home.css";
+@import "./pages/about.css";
+@import "./pages/email-index.css";
+
 
 /* Components */
 @import "./cmps/app-header.css";
+/* mail related */
+@import "./cmps/mail/email-compose.css";
+@import "./cmps/mail/email-list.css";
+@import "./cmps/mail/email-details.css";
+@import "./cmps/mail/email-sidebar.css";
+@import "./cmps/icon.css";
+
 
 
 

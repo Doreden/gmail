@@ -7,14 +7,11 @@ export function App() {
 		<Router>
 			<main className="app">
 				<Routes>
-					<Route path="/" element={<Home />} />
+					<Route path="/" element={<EmailIndex />} />
 					<Route path="/about" element={<About />} />
-					<Route path="/email/:folderId?" element={<EmailIndex />} />
+					{/* <Route path="/email/:folderId?" element={<EmailIndex />} /> */}
 				</Routes>
 			</main>
-			{/* <footer>
-				<section className="container">Email Rights 2024 &copy;</section>
-			</footer> */}
 		</Router>
 	);
 }
